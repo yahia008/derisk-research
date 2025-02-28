@@ -280,15 +280,18 @@ class Dashboard:
         collateral_df = get_total_amount_by_field(self.collateral_stats, 'collateral')
         debt_df = get_total_amount_by_field(self.debt_stats, 'debt')
         deposit_df = get_total_amount_by_field(self.supply_stats, 'deposit')
-        
+
         boxplot_data = pd.DataFrame({
             "Collateral": collateral_df["total_amount"],
             "Debt": debt_df["total_amount"],
             "Deposit": deposit_df["total_amount"]
         })
-        
         fig, ax = plt.subplots(figsize=(8, 5))
-        sns.boxplot(data=boxplot_data, palette={"Collateral": "green", "Debt": "red", "Deposit": "red"})
+        sns.boxplot(
+            data=boxplot_data,
+            palette={
+                "Collateral": "green",
+                "Debt": "red", "Deposit": "red"})
 
         ax.set_ylabel("Total Amount")
         ax.set_title("Box Plot of Collateral, Debt, and Deposit")
